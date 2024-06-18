@@ -19,7 +19,7 @@ interface DentalProcess {
 export class TestComponent implements OnInit {
   dentalProcesses: DentalProcess[] = [];
 
-  private apiUrl = 'http://localhost:3000/GetInfo';
+  private apiUrl = 'http://lacarreraporlavida.com:3000/GetInfo';
 
   constructor(private http: HttpClient) {}
 
