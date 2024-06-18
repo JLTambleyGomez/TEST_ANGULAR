@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +12,7 @@ interface DentalProcess {
 @Component({
   selector: 'app-test',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],  // Importa HttpClientModule aquí
+  imports: [CommonModule],
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })
@@ -25,14 +24,14 @@ export class TestComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getDentalProcesses().subscribe(
-      (data) => {
+    this.getDentalProcesses().subscribe({
+      next: (data) => {
         this.dentalProcesses = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching dental processes', error);
       }
-    );
+    });
   }
 
   getDentalProcesses(): Observable<DentalProcess[]> {
